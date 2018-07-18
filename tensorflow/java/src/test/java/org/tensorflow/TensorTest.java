@@ -547,4 +547,17 @@ public class TensorTest {
       // expected.
     }
   }
+
+  @Test
+  public void mulitThreaded() {
+    for (int i = 0; i < 10; i++) {
+      new Thread(new Runnable() {
+        @Override
+        public void run() {
+          Tensors.create(new byte[100]);
+        }
+      }).start();
+    }
+  }
+
 }
